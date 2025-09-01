@@ -2,6 +2,8 @@ package br.com.experimentos;
 
 import br.com.experimentos.core.AlgFn;
 import br.com.experimentos.models.Resultado;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class App {
@@ -15,7 +17,6 @@ public class App {
     }
 
     public static void main(String[] args) {
-        // ajuste aqui os valores de n para cada algoritmo
         List<Integer> nsAlg1 = Arrays.asList(5, 10, 20, 30, 40);
         List<Integer> nsAlg2 = Arrays.asList(100, 500, 1000, 2000, 5000);
         List<Integer> nsAlg3 = Arrays.asList(4, 6, 8, 10, 12);
@@ -36,13 +37,32 @@ public class App {
         nsPorAlg.put("alg4", nsAlg4);
         nsPorAlg.put("alg5", nsAlg5);
 
-        System.out.println("algoritmo,n,cont_op,tempo_ms");
-        for (Map.Entry<String, AlgFn> e : algs.entrySet()) {
-            String nome = e.getKey();
-            AlgFn fn = e.getValue();
-            for (int n : nsPorAlg.get(nome)) {
-                Resultado r = medir(nome, fn, n);
-                System.out.println(r.toCsv());
+        String outFile = null;
+        for (int i = 0; i < args.length; i++) {
+            if ("--out".equals(args[i]) && i + 1 < args.length) {
+                outFile = args[i + 1];
+                break;
+            }
+        }
+
+        PrintWriter out = null;
+        try {
+            out = (outFile == null) ? new PrintWriter(System.out) : new PrintWriter(outFile);
+            out.println("algoritmo;n;cont_op;tempo_ms");
+            for (Map.Entry<String, AlgFn> e : algs.entrySet()) {
+                String nome = e.getKey();
+                AlgFn fn = e.getValue();
+                for (int n : nsPorAlg.get(nome)) {
+                    Resultado r = medir(nome, fn, n);
+                    out.println(r.toCsv());
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            System.err.println("Erro ao abrir arquivo de saída: " + ex.getMessage());
+        } finally {
+            if (out != null && out != new PrintWriter(System.out)) {
+                out.flush();
+                out.close();
             }
         }
     }

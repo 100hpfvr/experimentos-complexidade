@@ -9,7 +9,6 @@ public final class Alg3 {
             long jStart = i / 2L;
             long jStep = i / 2L + 1L;
             for (long j = jStart; j <= 2L * i; j += jStep) {
-                // k tem passo dependente de k (k/2 + 1), sempre cresce
                 for (long k = j + 1L; k <= n + j; k += (k / 2L + 1L)) {
                     res = res + (int) Math.abs(j - i);
                     cont++;

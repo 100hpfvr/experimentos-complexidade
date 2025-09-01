@@ -12,6 +12,6 @@ public final class Resultado {
         this.tempoMs = tempoMs;
     }
     public String toCsv() {
-        return algoritmo + "," + n + "," + contOp + "," + tempoMs;
+        return algoritmo + ";" + n + ";" + contOp + ";" + tempoMs;
     }
 }
