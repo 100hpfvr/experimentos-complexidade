@@ -18,10 +18,10 @@ public class App {
 
     public static void main(String[] args) {
         List<Integer> nsAlg1 = Arrays.asList(5, 10, 20, 30, 40);
-        List<Integer> nsAlg2 = Arrays.asList(100, 500, 1000, 2000, 5000);
-        List<Integer> nsAlg3 = Arrays.asList(4, 6, 8, 10, 12);
-        List<Integer> nsAlg4 = Arrays.asList(10, 20, 30, 40, 50);
-        List<Integer> nsAlg5 = Arrays.asList(5, 10, 15, 20, 25);
+        List<Integer> nsAlg2 = Arrays.asList(5, 10, 20, 30, 40);
+        List<Integer> nsAlg3 = Arrays.asList(5, 10, 20, 30, 40);
+        List<Integer> nsAlg4 = Arrays.asList(5, 10, 20, 30, 40);
+        List<Integer> nsAlg5 = Arrays.asList(5, 10, 20, 30, 40);
 
         Map<String, AlgFn> algs = new LinkedHashMap<>();
         algs.put("alg1", br.com.experimentos.alg.Alg1::run);
