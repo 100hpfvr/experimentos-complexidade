@@ -43,7 +43,7 @@ Como executar (resumo):
 - Ajuste as listas nsAlg1..nsAlg5 dentro de App.java para testar outros tamanhos de entrada.
 
 
-
+para rodar e colocar o arquivo csv numa pasta diferente da pasta do projeto utilize o comando abaixo e substitua o caminho pelo seu.
 run 
 ```shell
 java -cp "out\production\Trabalho 1 - Experimentos em Complexidade" br.com.experimentos.App --out "D:\Projetos\PUCRS\ALEST\resultados.csv"
